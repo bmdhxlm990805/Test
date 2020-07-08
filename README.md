@@ -11,3 +11,4 @@
 <h2>11、git checkout -b <分支名称> 切换并创建指定分支<br /></h2>
 <h2>12、git push <远程仓库> <本地分支名称> 将本地分支推送到远程仓库<br /></h2>
 <h2>13、git push <远程仓库> --delete <远程分支名称> 删除指定的远程仓库分支<br /></h2>
+<h2>14、ssh-keygen -t rsa -C '<GitHub上的用户名>'  在本地创建ssh key<br /></h2>
