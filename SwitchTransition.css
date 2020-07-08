@@ -1,0 +1,14 @@
+.demo-enter {
+    opacity: 0;
+  }
+  .demo-enter-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+  .demo-exit {
+    opacity: 1;
+  }
+  .demo-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }

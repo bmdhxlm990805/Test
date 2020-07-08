@@ -1,0 +1,22 @@
+.exited{
+    opacity: 1;
+    color: black;
+    transition: all 2s ease;
+    background-color: green;
+}
+.entering{  /*过渡*/
+    opacity: 0;
+    color: red;
+    transition: all 2s ease;
+}
+.entered{
+    opacity: 0;
+    color: red;
+    transition: all 2s ease;
+}
+.exiting{  /*过渡*/
+    opacity: 1;
+    color: black;
+    background-color: green;
+    transition: all 2s ease;
+}
