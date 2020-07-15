@@ -1,0 +1,58 @@
+概述
+React Transition Group不是像React-Motion这样的动画库，它本身不会对样式进行动画处理。它只是在不同的过度阶段提供不同的类名，管理类和组元素并以有用的方式操作DOM，给每个类样式添加不同的CSS样式即可实现动画效果，从而使实际视觉过渡的实现更加容易。
+React Transition Group是一个组件库，它给我们提供了四个组件（Transition、CSSTransition、SwitchTransition、TransitionGroup），后面的这三个组件继承了第一个组件的所有属性。
+
+一、安装 React Transition Group
+    1、安装 (首先的确保您安装了npm或者yarn环境)
+        通过npm安装：npm install react-transition-group --save
+        通过yarn安装：yarn add react-transition-group
+二、Transition 组件
+    1、引入 Transition 模块
+        import { Transition } from 'react-transition-group'
+    2、Transition 提供的状态：
+        1)、entering：进场动画正在进行
+        2)、entered：进场动画执行完成
+        3)、exiting：离场动画正在进行
+        4)、exited：离场动画完成
+        这四个状态分别对应了四个类样式，通过设置样式的属性，既可以实现动画效果，点击按钮可以切换 Transition 的动画状态。
+    3、Transition 的属性
+        1)、in：切换组件的状态
+        2)、children：给Transition传递一个函数作为它的子元素，给children添加对应的类名，切换状态的时候即可实现动画效果
+        3)、timeout：过渡持续时间（以毫秒为单位）
+        4)、mountOnEnter：默认情况下，子组件将与父Transition组件一起立即安装。如果要首先“延迟安装”组件，in={true}可以设置mountOnEnter。
+        5)、unmountOnExit：默认情况下，子组件在达到'exited'状态后会保持挂载状态。设置unmountOnExit是否要在退出组件后从组件树中卸载该组件。
+        6)、appear：默认情况下，无论in的值如何，子组件在第一次装载时不执行enter转换。如果需要此行为，请将“appear”和“in”都设置为true。
+        7)、enter：是否启用进入动画
+        8)、exit：是否启用退出动画
+        9)、onEnter：入场动画第一帧的时候触发
+        10)、onEntering：入场动画第二帧的时候触发
+        11)、onEntered：入场动画结束的时候触发
+        12)、onExit：出场动画结束第一帧的时候触发
+        13)、onExiting：出场动画结束第二帧的时候触发
+        14)、onExited：出场动画结束的时候触发
+        15)、addEndListener：添加一个自定义的过度结束事件
+三、CSSTransition 组件
+    1、引入 Transition 模块
+        import { CSSTransition } from 'react-transition-group'
+    2、CSSTransition提供的状态：
+        1)、appear、appear-active、appear-done：首次出现动画
+        2)、enter(加载前)、enter-active(加载中)、enter-done(加载后)：载入动画
+        3)、exit(退出前)、exit-active(退出中)、exit-done(退出后)：退出动画
+    2、CSSTransition 组件属性继承了Transition的所有属性
+        1)、classNames：当参数类型为'string'的时候为类名前缀、如果为对象的时候，则为每个状态单独设置其样式(非前缀)
+        2)、appear：首次出现结束后添加enter-done
+四、SwitchTransition 组件
+    1、引入 SwitchTransition 模块
+        import { SwitchTransition, CSSTransition } from 'react-transition-group'
+    2、SwitchTransition 组件必须配合CSSTransition或者Transition一起使用，用于实现有秩序的切换内部组件，当key值改变时、会将之前的DOM根元素添加退出样式(exit、exit-active)，退出完成后、将该DOM元素移除，重新渲染内部DOM元素，为新渲染的DOM元素添加进入样式(enter、enter-active、enter-done)
+    3、SwitchTransition 的属性：
+        1)、key：两个key值不一样、React内部会重新渲染一个组件、将之前的组件卸载掉、导致内部的DOM(虚拟DOM)元素为一个崭新的元素
+        2)、mode：默认为out-in(先移除在进入)，可以更改为in-out(先进入在移除)，重新渲染内部的DOM元素，保留之前的元素，为新的DOM元素添加进入样式，将之前的DOM添加移除样式，退出完成后将DOM元素移除
+五、TransitionGroup 组件
+    1、引入 TransitionGroup 模块
+        import { TransitionGroup, CSSTransition } from 'react-transition-group'
+    2、TransitionGroup 组件的 children 接收多个CSSTransition或者Transition组件，该组件用于根据这些子组件的key值，空值它们的进入和退出状态，in属性为true时进入enter状态，为false时进入exit状态，
+    3、TransitionGroup 的属性：
+        1)、component：默认情况下 TransitionGroup 会渲染一个 div 来包裹它的children，如果不需要渲染这个包裹层，可以使用component={null}
+        2)、className：可以为这个包裹层设置一个类名(不是前缀)，可以通过class改变这个包裹层的样式
+
